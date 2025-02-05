@@ -1,0 +1,114 @@
+<!-- Hero Section -->
+<div class="page-title light-background">
+  <div class="container">
+    <h1>Explore Our Properties</h1>
+    <nav class="breadcrumbs">
+      <ol>
+        <li><a routerLink="/">Home</a></li>
+        <li class="current">Find your dream property from our wide range of listings.</li>
+      </ol>
+    </nav>
+  </div>
+</div>
+
+<!-- Property Listings -->
+<section class="light-background">
+  <div class="container">
+    <!-- Filter Section -->
+    <!-- Filters Section -->
+    <div class="row filters-row mb-4">
+      <div class="filter-item col-md-3">
+        <label for="propertyType" class="form-label">Property Type</label>
+        <select id="propertyType" [(ngModel)]="propertyType" class="form-select">
+          <option value="all">All</option>
+          <option value="apartment">Apartment</option>
+          <option value="villa">Villa</option>
+          <option value="studio">Studio</option>
+        </select>
+      </div>
+
+      <div class="filter-item col-md-3">
+        <label for="priceRange" class="form-label">Price Range</label>
+        <select id="priceRange" [(ngModel)]="priceRange" class="form-select">
+          <option value="all">All</option>
+          <option value="low">Under $1,000</option>
+          <option value="medium">$1,000 - $3,000</option>
+          <option value="high">Above $3,000</option>
+        </select>
+      </div>
+
+      <div class="filter-item col-md-3">
+        <label for="location" class="form-label">Location</label>
+        <select id="location" [(ngModel)]="location" class="form-select">
+          <option value="all">All</option>
+          <option value="New York">New York</option>
+          <option value="Los Angeles">Los Angeles</option>
+          <option value="Chicago">Chicago</option>
+        </select>
+      </div>
+
+      <div class="filter-item col-md-3">
+        <label for="beds" class="form-label">Beds</label>
+        <select id="beds" [(ngModel)]="beds" class="form-select">
+          <option value="0">All</option>
+          <option value="1">1 Bed</option>
+          <option value="2">2 Beds</option>
+          <option value="3">3 Beds</option>
+          <option value="4">4 Beds</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Property Listings -->
+    <div class="row">
+      <div class="col-md-4 mb-4" *ngFor="let property of filteredProperties">
+        <div class="card-property">
+          <div class="property-image">
+            <div [id]="'propertyImagesCarousel' + property.id" class="carousel slide" data-bs-ride="carousel">
+              <div class="carousel-inner">
+                <div class="carousel-item" *ngFor="let image of property?.images; let i = index"
+                  [class.active]="i === 0">
+                  <img [src]="image" loading="lazy" class="d-block w-100" alt="Property Image">
+                </div>
+              </div>
+              <button class="carousel-control-prev" type="button"
+                [attr.data-bs-target]="'#propertyImagesCarousel' + property.id" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button"
+                [attr.data-bs-target]="'#propertyImagesCarousel' + property.id" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+          </div>
+          <div class="body-property">
+            <h3 class="card-title">{{ property.title }}</h3>
+            <p class="card-text">{{ property.description }}</p>
+            <p class="card-text"><i class="bi bi-geo-alt-fill"></i>{{ property.location }}</p>
+            <p class="card-text">{{ property.beds }} Bed | {{ property.bath }} Bath</p>
+            <div class="price">
+              <span class="currency">
+                <font style="vertical-align: inherit;">
+                  <font style="vertical-align: inherit;">$ </font>
+                </font>
+              </span>
+              <span class="amount">
+                <font style="vertical-align: inherit;">
+                  <font style="vertical-align: inherit;">{{ property.price }}</font>
+                </font>
+              </span>
+              <span class="period">
+                <font style="vertical-align: inherit;">
+                  <font style="vertical-align: inherit;">/month</font>
+                </font>
+              </span>
+            </div>
+            <a (click)="viewDetails(property.id)" class="btn next-btn">View Details</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

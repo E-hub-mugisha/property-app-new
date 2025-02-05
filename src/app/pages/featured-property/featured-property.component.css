@@ -1,0 +1,86 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap");
+.speedyui-product {
+  font-family: "Open Sans", sans-serif;
+  --su-primary-color:#06b6d4;
+}
+.speedyui-product .product-thumbnail .product-badge {
+  z-index: 9;
+}
+@media (min-width: 768px) {
+  .speedyui-product .product-thumbnail .product-badge .badge {
+    transform: translate(-50%, -50%);
+  }
+}
+.speedyui-product .add-to-cart-action {
+  background-color: var(--su-primary-color);
+  transform: scale(1);
+  font-size: 16px;
+}
+@media (min-width: 768px) {
+  .speedyui-product .add-to-cart-action {
+    font-size: 14px;
+  }
+}
+@media (min-width: 992px) {
+  .speedyui-product .add-to-cart-action {
+    font-size: 16px;
+  }
+}
+.speedyui-product .add-to-cart-action:hover {
+  transform: scale(0.97);
+}
+.speedyui-product .product-img {
+  transform: scale(1);
+  transition: all 0.3s;
+}
+.speedyui-product .product-action-controls ul {
+  transform: translateY(4rem);
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.4s;
+}
+.speedyui-product .product-action-controls ul li a {
+  color: var(--bs-dark);
+  transition: all 0.3s;
+}
+.speedyui-product .product-action-controls ul li a .icon {
+  transition: all 0.3s ease-in-out;
+}
+.speedyui-product .product-action-controls ul li a:hover .icon {
+  animation: animateIcon 300ms;
+}
+.speedyui-product .product-description .product-title {
+  color: var(--bs-secondary);
+  transition: all 0.2s;
+}
+.speedyui-product .product-description .product-title:hover {
+  color: var(--bs-dark);
+}
+.speedyui-product .star-rating .icon {
+  color: #f7bc1e;
+}
+.speedyui-product:hover .product-action-controls ul {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+.speedyui-product:hover .product-img {
+  transform: scale(1.1);
+}
+@keyframes animateIcon {
+  0% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-5px);
+    opacity: 0;
+  }
+  80% {
+    transform: translateY(5px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

@@ -1,0 +1,26 @@
+.about .page-title {
+    background: #f8f9fa;
+    padding: 40px 0;
+  }
+  
+  .about .container h1,
+  .about .container h2,
+  .about .container h3 {
+    margin-bottom: 20px;
+  }
+  
+  .about img.rounded-circle {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+  }
+  
+  .about .btn-primary {
+    background-color: #007bff;
+    border: none;
+  }
+  
+  .about .btn-primary:hover {
+    background-color: #0056b3;
+  }
+  

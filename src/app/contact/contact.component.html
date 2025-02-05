@@ -1,0 +1,110 @@
+<!-- Hero Section -->
+<div class="page-title light-background">
+    <div class="container">
+        <h1>Explore Our Properties</h1>
+        <nav class="breadcrumbs">
+            <ol>
+                <li><a routerLink="/">Home</a></li>
+                <li class="current">Find your dream property from our wide range of listings.</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<section id="contact" class="contact section light-background">
+
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+        <h2>Contact</h2>
+        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+    </div><!-- End Section Title -->
+
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row g-4 g-lg-5">
+            <!-- Contact Info -->
+            <div class="col-lg-5">
+                <div class="info-box" data-aos="fade-up" data-aos-delay="200">
+                    <h3>Contact Info</h3>
+                    <p>Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ante ipsum
+                        primis.</p>
+
+                    <div class="info-item" data-aos="fade-up" data-aos-delay="300">
+                        <div class="icon-box">
+                            <i class="bi bi-geo-alt"></i>
+                        </div>
+                        <div class="content">
+                            <h4>Our Location</h4>
+                            <p>A108 Adam Street</p>
+                            <p>New York, NY 535022</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item" data-aos="fade-up" data-aos-delay="400">
+                        <div class="icon-box">
+                            <i class="bi bi-telephone"></i>
+                        </div>
+                        <div class="content">
+                            <h4>Phone Number</h4>
+                            <p>+1 5589 55488 55</p>
+                            <p>+1 6678 254445 41</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item" data-aos="fade-up" data-aos-delay="500">
+                        <div class="icon-box">
+                            <i class="bi bi-envelope"></i>
+                        </div>
+                        <div class="content">
+                            <h4>Email Address</h4>
+                            <p>info&#64;example.com</p>
+                            <p>contact&#64;example.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="col-lg-7">
+                <div class="contact-form" data-aos="fade-up" data-aos-delay="300">
+                    <h3>Get In Touch</h3>
+                    <p>Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ante ipsum
+                        primis.</p>
+
+                    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="php-email-form" data-aos="fade-up"
+                        data-aos-delay="200">
+                        <div class="row gy-4">
+
+                            <div class="col-md-6">
+                                <input type="text" formControlName="name" class="form-control" placeholder="Your Name">
+                            </div>
+
+                            <div class="col-md-6">
+                                <input type="email" formControlName="email" class="form-control"
+                                    placeholder="Your Email">
+                            </div>
+
+                            <div class="col-12">
+                                <input type="text" formControlName="subject" class="form-control" placeholder="Subject">
+                            </div>
+
+                            <div class="col-12">
+                                <textarea formControlName="message" class="form-control" rows="6"
+                                    placeholder="Message"></textarea>
+                            </div>
+
+                            <div class="col-12 text-center">
+                                <button type="submit" class="btn" [disabled]="loading">Send Message</button>
+                            </div>
+
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>

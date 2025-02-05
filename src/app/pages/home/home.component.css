@@ -1,0 +1,29 @@
+.hero {
+    background-image: url("https://via.placeholder.com/1920x600?text=Hero+Background");
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .featured .card {
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .services i {
+    font-size: 50px;
+  }
+  
+  .services .text-center h5 {
+    margin-top: 20px;
+  }
+  
+  .system img {
+    max-width: 100%;
+    border-radius: 10px;
+  }
+  
+  .cta {
+    background: #007bff;
+    color: white;
+  }
+  

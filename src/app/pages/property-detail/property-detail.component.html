@@ -1,0 +1,86 @@
+<!-- Hero Section -->
+<div class="page-title light-background py-4">
+  <div class="container">
+    <h1 class="text-center text-primary">
+      {{ property?.title || 'Explore Our Properties' }}
+    </h1>
+    <nav class="breadcrumbs">
+      <ol class="breadcrumb justify-content-center">
+        <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">
+          {{ property?.title || 'Find your dream property from our wide range of listings.' }}
+        </li>
+      </ol>
+    </nav>
+  </div>
+</div>
+
+<section class="light-background">
+  <!-- Property Details -->
+  <div class="container mt-5" *ngIf="property; else noProperty">
+    <div class="card-property-detail">
+      <div class="row">
+        <div class="col-md-6">
+          <div id="propertyImagesCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item" *ngFor="let image of property?.images; let i = index" [class.active]="i === 0">
+                <img [src]="image" loading="lazy" class="d-block w-100" alt="Property Image">
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#propertyImagesCarousel"
+              data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#propertyImagesCarousel"
+              data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+
+        </div>
+        <div class="col-md-6">
+          <div class="card-property-content">
+            <h2 class="text-primary">{{ property.title }}</h2>
+            <p class="text-muted">Type: <span>{{ property.type | titlecase }}</span> | <span class="card-text">{{ property.beds }} Bed | {{ property.bath }} Bath</span></p>
+            <p class="card-text"><i class="bi bi-geo-alt-fill"></i>{{ property.location }}</p>
+            
+            <div class="price">
+              <span class="currency">
+                <font style="vertical-align: inherit;">
+                  <font style="vertical-align: inherit;">$ </font>
+                </font>
+              </span>
+              <span class="amount">
+                <font style="vertical-align: inherit;">
+                  <font style="vertical-align: inherit;">{{ property.price }}</font>
+                </font>
+              </span>
+              <span class="period">
+                <font style="vertical-align: inherit;">
+                  <font style="vertical-align: inherit;">/month</font>
+                </font>
+              </span>
+            </div>
+            <p>{{ property.description }}</p>
+            <div class="mt-4">
+              <button class="btn btn-primary" (click)="bookProperty(property.id)">Book Now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Fallback for No Property -->
+  <ng-template #noProperty>
+    <div class="container mt-5 text-center">
+      <div class="card-property-detail">
+        <h3 class="text-danger">Property not found</h3>
+        <a routerLink="/" class="btn btn-secondary mt-3">Go Back to Home</a>
+      </div>
+    </div>
+  </ng-template>
+
+</section>
