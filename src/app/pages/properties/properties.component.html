@@ -85,7 +85,7 @@
           </div>
           <div class="body-property">
             <h3 class="card-title">{{ property.title }}</h3>
-            <p class="card-text">{{ property.description }}</p>
+            <p class="card-text">{{ property.description | slice:0:50 }}</p>
             <p class="card-text"><i class="bi bi-geo-alt-fill"></i>{{ property.location }}</p>
             <p class="card-text">{{ property.beds }} Bed | {{ property.bath }} Bath</p>
             <div class="price">
