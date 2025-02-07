@@ -18,69 +18,114 @@
 <section class="light-background">
   <!-- Property Details -->
   <div class="container mt-5" *ngIf="property; else noProperty">
-    <div class="card-property-detail">
-      <div class="row">
-        <div class="col-md-6">
-          <div id="propertyImagesCarousel" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-              <div class="carousel-item" *ngFor="let image of property?.images; let i = index" [class.active]="i === 0">
-                <img [src]="image" loading="lazy" class="d-block w-100" alt="Property Image">
+    <div class="row gy-4">
+      <div class="col-md-8 card-property-detail">
+        <div class="row">
+          <div class="col-md-6">
+            <div id="propertyImagesCarousel" class="carousel slide" data-bs-ride="carousel">
+              <div class="carousel-inner">
+                <div class="carousel-item" *ngFor="let image of property?.images; let i = index"
+                  [class.active]="i === 0">
+                  <img [src]="image" loading="lazy" class="d-block w-100" alt="Property Image">
+                </div>
               </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#propertyImagesCarousel"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#propertyImagesCarousel"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#propertyImagesCarousel"
-              data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#propertyImagesCarousel"
-              data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
+
           </div>
-
-        </div>
-        <div class="col-md-6">
-          <div class="card-property-content">
-            <h2 class="text-primary">{{ property.title }}</h2>
-            <p class="text-muted">Type: <span>{{ property.type | titlecase }}</span> | <span class="card-text">{{
+          <div class="col-md-6">
+            <div class="card-property-content">
+              <h2 class="text-primary">{{ property.title }}</h2>
+              <p class="text-muted">Type: <span>{{ property.type | titlecase }}</span> | <span class="card-text">{{
                 property.beds }} Bed | {{ property.bath }} Bath</span></p>
-            <p class="card-text"><i class="bi bi-geo-alt-fill"></i>{{ property.location }}</p>
+              <p class="card-text"><i class="bi bi-geo-alt-fill"></i>{{ property.location }}</p>
 
-            <div class="price">
-              <span class="currency">
-                <font style="vertical-align: inherit;">
-                  <font style="vertical-align: inherit;">$ </font>
-                </font>
-              </span>
-              <span class="amount">
-                <font style="vertical-align: inherit;">
-                  <font style="vertical-align: inherit;">{{ property.price }}</font>
-                </font>
-              </span>
-              <span class="period">
-                <font style="vertical-align: inherit;">
-                  <font style="vertical-align: inherit;">/month</font>
-                </font>
-              </span>
-            </div>
-            <p>{{ property.description }}</p>
-            <div class="mt-4">
-              <button class="btn btn-primary" (click)="bookProperty(property.id)">Book Now</button>
+              <div class="price">
+                <span class="currency">
+                  <font style="vertical-align: inherit;">
+                    <font style="vertical-align: inherit;">$ </font>
+                  </font>
+                </span>
+                <span class="amount">
+                  <font style="vertical-align: inherit;">
+                    <font style="vertical-align: inherit;">{{ property.price }}</font>
+                  </font>
+                </span>
+                <span class="period">
+                  <font style="vertical-align: inherit;">
+                    <font style="vertical-align: inherit;">/month</font>
+                  </font>
+                </span>
+              </div>
+              <p>{{ property.description }}</p>
+              <div class="mt-4">
+                <button class="btn btn-primary" (click)="bookProperty(property.id)">Book Now</button>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="card-property-detail mt-5">
-      <h3 class="text-primary">Property on Map</h3>
-      <div class="row">
-        <div class="col-md-10">
-          <div class="map-container">
-            <iframe width="100%" height="400" style="border:0;" loading="lazy" allowfullscreen
-            [src]="googleMapsUrl">
-            </iframe>
+      <div class="col-md-4 mx-0 card-property-detail py-2">
+        <div class="card-property-book">
+          <div class="card-body py-4">
+            <h2 class="text-center mb-4">Book a Property Visit</h2>
+            <form>
+              <div class="row">
+                <div class="mb-3">
+                  <label for="name" class="form-label">Full Name</label>
+                  <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
+                </div>
+
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email Address</label>
+                  <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+                </div>
+
+                <div class="mb-3">
+                  <label for="phone" class="form-label">Phone Number</label>
+                  <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number" required>
+                </div>
+
+                <div class="mb-3 col-md-6">
+                  <label for="date" class="form-label">Preferred Date</label>
+                  <input type="date" class="form-control" id="date" required>
+                </div>
+
+                <div class="mb-3 col-md-6">
+                  <label for="time" class="form-label">Preferred Time</label>
+                  <input type="time" class="form-control" id="time" required>
+                </div>
+
+                <div class="mb-3">
+                  <label for="message" class="form-label">Message (Optional)</label>
+                  <textarea class="form-control" id="message" rows="3" placeholder="Additional notes..."></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100">Book Visit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-property-detail mt-5">
+        <h3 class="text-primary">Property on Map</h3>
+        <div class="row">
+          <div class="col-md-10">
+            <div class="map-container">
+              <iframe width="100%" height="400" style="border:0;" loading="lazy" allowfullscreen [src]="googleMapsUrl">
+              </iframe>
+            </div>
           </div>
         </div>
       </div>
