@@ -1,4 +1,152 @@
-<app-header></app-header>
+
+<!-- Header -->
+<header class="header header-fix">
+  <div class="header-top">
+    <div class="template-ad">
+      <img src="assets/img/icons/badge-icon.svg" alt="icon">
+      <h5>No 1, Realestate Website to Buy / Sell Your Place <span>First Listing Free!!!</span></h5>
+    </div>
+  </div>
+  <nav class="navbar navbar-expand-lg header-nav">
+    <div class="navbar-header">
+      <a id="mobile_btn" href="javascript:void(0);">
+        <span class="bar-icon">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </a>
+      <a href="index.html" class="navbar-brand logo">
+        <img src="assets/img/logo.svg" class="img-fluid" alt="Logo">
+      </a>
+    </div>
+    <div class="main-menu-wrapper">
+      <div class="menu-header">
+        <a routerLink="/" class="menu-logo">
+          <img src="assets/img/logo.svg" class="img-fluid" alt="Logo">
+        </a>
+
+        <a id="menu_close" class="menu-close" href="javascript:void(0);">
+          <i class="fas fa-times"></i>
+        </a>
+      </div>
+      <ul class="main-nav">
+        <li class="active">
+          <a routerLink="/" routerLinkActive="active">Home</a>
+        </li>
+        <li class="has-submenu">
+          <a href="javascript:void(0);">Listing <i class="fas fa-chevron-down"></i></a>
+          <ul class="submenu">
+            <li class="has-submenu">
+              <a href="javascript:void(0);">Buy Property</a>
+              <ul class="submenu">
+                <li><a routerLink="/tenants" routerLinkActive="active">For Tenants</a></li>
+                <li><a routerLink="/owners" routerLinkActive="active">For Owners</a></li>
+                <li><a href="buy-property-grid.html">Buy Grid</a></li>
+                <li><a href="buy-property-list.html">Buy List</a></li>
+                <li><a href="buy-property-grid-sidebar.html">Buy Grid With Sidebar</a></li>
+                <li><a href="buy-property-list-sidebar.html">Buy List With Sidebar</a></li>
+                <li><a href="buy-grid-map.html">Buy Grid with map</a></li>
+                <li><a href="buy-list-map.html">Buy List with map</a></li>
+                <li><a href="buy-details.html">Buy Details</a></li>
+              </ul>
+            </li>
+            <li class="has-submenu">
+              <a href="javascript:void(0);">Rent Property</a>
+              <ul class="submenu">
+                <li><a href="rent-property-grid.html">Rent Grid</a></li>
+                <li><a href="rent-property-list.html">Rent List</a></li>
+                <li><a href="rent-property-grid-sidebar.html">Rent Grid With Sidebar</a></li>
+                <li><a href="rent-property-list-sidebar.html">Rent List With Sidebar</a></li>
+                <li><a href="rent-grid-map.html">Rent Grid with map</a></li>
+                <li><a href="rent-list-map.html">Rent List with map</a></li>
+                <li><a href="rent-details.html">Rent Details</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li class="has-submenu">
+          <a href="javascript:void(0);">Agent <i class="fas fa-chevron-down"></i></a>
+          <ul class="submenu">
+            <li><a href="agent-grid.html">Agent Grid</a></li>
+            <li><a href="agent-list.html">Agent List</a></li>
+            <li><a href="agent-grid-sidebar.html">Agent Grid With Sidebar</a></li>
+            <li><a href="agent-list-sidebar.html">Agent List With Sidebar</a></li>
+            <li><a href="agent-details.html">Agent Details</a></li>
+          </ul>
+        </li>
+        <li class="has-submenu">
+          <a href="javascript:void(0);">Agency <i class="fas fa-chevron-down"></i></a>
+          <ul class="submenu">
+            <li><a href="agency-grid.html">Agency Grid</a></li>
+            <li><a href="agency-list.html">Agency List</a></li>
+            <li><a href="agency-grid-sidebar.html">Agency Grid With Sidebar</a></li>
+            <li><a href="agency-list-sidebar.html">Agency List With Sidebar</a></li>
+            <li><a href="agency-details.html">Agency Details</a></li>
+          </ul>
+        </li>
+        <li class="has-submenu">
+          <a href="javascript:void(0);">Pages <i class="fas fa-chevron-down"></i></a>
+          <ul class="submenu">
+            <li><a routerLink="/about" routerLinkActive="active">About Us</a></li>
+            <li class="has-submenu">
+              <a href="javascript:void(0);">Authentication</a>
+              <ul class="submenu">
+                <li><a href="register.html">Signup</a></li>
+                <li><a href="login.html">Signin</a></li>
+                <li><a href="forgot-password.html">Forgot Password</a></li>
+                <li><a href="reset-password.html">Reset Password</a></li>
+              </ul>
+            </li>
+            <li><a href="invoice-details.html">Invoice Details</a></li>
+            <li class="has-submenu">
+              <a href="javascript:void(0);">Error Page</a>
+              <ul class="submenu">
+                <li><a href="error-404.html">404 Error</a></li>
+                <li><a href="error-500.html">500 Error</a></li>
+              </ul>
+            </li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="our-team.html">Our Team</a></li>
+            <li><a href="testimonial.html">Testimonials</a></li>
+            <li><a href="terms-condition.html">Terms & Conditions</a></li>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="maintenance.html">Maintenance</a></li>
+            <li><a href="coming-soon.html">Coming Soon</a></li>
+          </ul>
+        </li>
+        <li>
+          <a routerLink="/blogs" routerLinkActive="active">Blog</a>
+        </li>
+        <li><a href="contact-us.html">Contact Us</a></li>
+        <li class="searchbar">
+          <a href="javascript:void(0);">
+            <img src="assets/img/icons/search-icon.svg" alt="img">
+          </a>
+        </li>
+        <li class="login-link"><a href="login.html">Sign Up</a></li>
+        <li class="login-link"><a href="register.html">Sign In</a></li>
+      </ul>
+    </div>
+    <ul class="nav header-navbar-rht">
+      <li class="new-property-btn">
+        <a href="add-new-property.html">
+          <i class="bx bxs-plus-circle"></i> Add New Property
+        </a>
+      </li>
+      <li>
+        <a href="register.html" class="btn btn-primary"><i class="feather-user-plus"></i>Sign Up</a>
+      </li>
+      <li>
+        <a href="login.html" class="btn sign-btn"><i class="feather-unlock"></i>Sign In</a>
+      </li>
+    </ul>
+  </nav>
+</header>
+<!-- /Header -->
+
 <main class="main">
 
   <router-outlet></router-outlet>

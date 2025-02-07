@@ -9,6 +9,8 @@ import { OwnersComponent } from './pages/owners/owners.component';
 import { ContactComponent } from './contact/contact.component';
 import { PropertyDetailComponent } from './pages/property-detail/property-detail.component';
 import { BookingPropertyComponent } from './pages/booking-property/booking-property.component';
+import { BlogsComponent } from './pages/blogs/blogs.component';
+import { BlogdetailComponent } from './pages/blogdetail/blogdetail.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -21,6 +23,8 @@ const routes: Routes = [
   { path: 'contact', component: ContactComponent },
   { path: '**', redirectTo: '', pathMatch: 'full' },
   { path: 'booking-confirmation/:id', component: BookingPropertyComponent },
+  { path: 'blogs', component: BlogsComponent },
+  { path: 'blog-detail', component: BlogdetailComponent },
 ];
 
 @NgModule({
