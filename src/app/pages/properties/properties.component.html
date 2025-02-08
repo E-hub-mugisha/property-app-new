@@ -1,114 +1,189 @@
-<!-- Hero Section -->
-<div class="page-title light-background">
+
+<!-- Breadcrumb -->
+<div class="breadcrumb">
   <div class="container">
-    <h1>Explore Our Properties</h1>
-    <nav class="breadcrumbs">
-      <ol>
-        <li><a routerLink="/">Home</a></li>
-        <li class="current">Find your dream property from our wide range of listings.</li>
-      </ol>
-    </nav>
-  </div>
-</div>
-
-<!-- Property Listings -->
-<section class="light-background">
-  <div class="container">
-    <!-- Filter Section -->
-    <!-- Filters Section -->
-    <div class="row filters-row mb-4">
-      <div class="filter-item col-md-3">
-        <label for="propertyType" class="form-label">Property Type</label>
-        <select id="propertyType" [(ngModel)]="propertyType" class="form-select">
-          <option value="all">All</option>
-          <option value="apartment">Apartment</option>
-          <option value="villa">Villa</option>
-          <option value="studio">Studio</option>
-        </select>
+    <div class="bread-crumb-head">
+      <div class="breadcrumb-title">
+        <h2>Dream property</h2>
       </div>
-
-      <div class="filter-item col-md-3">
-        <label for="priceRange" class="form-label">Price Range</label>
-        <select id="priceRange" [(ngModel)]="priceRange" class="form-select">
-          <option value="all">All</option>
-          <option value="low">Under $1,000</option>
-          <option value="medium">$1,000 - $3,000</option>
-          <option value="high">Above $3,000</option>
-        </select>
-      </div>
-
-      <div class="filter-item col-md-3">
-        <label for="location" class="form-label">Location</label>
-        <select id="location" [(ngModel)]="location" class="form-select">
-          <option value="all">All</option>
-          <option value="New York">New York</option>
-          <option value="Los Angeles">Los Angeles</option>
-          <option value="Chicago">Chicago</option>
-        </select>
-      </div>
-
-      <div class="filter-item col-md-3">
-        <label for="beds" class="form-label">Beds</label>
-        <select id="beds" [(ngModel)]="beds" class="form-select">
-          <option value="0">All</option>
-          <option value="1">1 Bed</option>
-          <option value="2">2 Beds</option>
-          <option value="3">3 Beds</option>
-          <option value="4">4 Beds</option>
-        </select>
+      <div class="breadcrumb-list">
+        <ul>
+          <li><a href="/">Home </a></li>
+          <li>Find your dream property from our wide range of listings.</li>
+        </ul>
       </div>
     </div>
+    <div class="breadcrumb-border-img">
+      <img src="assets/img/bg/line-bg.png" alt="Line Image">
+    </div>
+  </div>
+</div>
+<!-- Breadcrumb -->
 
-    <!-- Property Listings -->
-    <div class="row">
-      <div class="col-md-4 mb-4" *ngFor="let property of filteredProperties">
-        <div class="card-property">
-          <div class="property-image">
-            <div [id]="'propertyImagesCarousel' + property.id" class="carousel slide" data-bs-ride="carousel">
-              <div class="carousel-inner">
-                <div class="carousel-item" *ngFor="let image of property?.images; let i = index"
-                  [class.active]="i === 0">
-                  <img [src]="image" loading="lazy" class="d-block w-100" alt="Property Image">
-                </div>
-              </div>
-              <button class="carousel-control-prev" type="button"
-                [attr.data-bs-target]="'#propertyImagesCarousel' + property.id" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-              </button>
-              <button class="carousel-control-next" type="button"
-                [attr.data-bs-target]="'#propertyImagesCarousel' + property.id" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-              </button>
-            </div>
+<!-- Feature Property For Rent -->
+<div class="listing-section">
+  <div class="container">
+
+    <!-- Sort Result -->
+    <div class="showing-result-head">
+      <div class="row align-items-center">
+        <div class="col-lg-2">
+          <div class="result-show">
+            <h5>Showing result <span>06</span> of <span>125</span></h5>
           </div>
-          <div class="body-property">
-            <h3 class="card-title">{{ property.title }}</h3>
-            <p class="card-text">{{ property.description | slice:0:50 }}</p>
-            <p class="card-text"><i class="bi bi-geo-alt-fill"></i>{{ property.location }}</p>
-            <p class="card-text">{{ property.beds }} Bed | {{ property.bath }} Bath</p>
-            <div class="price">
-              <span class="currency">
-                <font style="vertical-align: inherit;">
-                  <font style="vertical-align: inherit;">$ </font>
-                </font>
-              </span>
-              <span class="amount">
-                <font style="vertical-align: inherit;">
-                  <font style="vertical-align: inherit;">{{ property.price }}</font>
-                </font>
-              </span>
-              <span class="period">
-                <font style="vertical-align: inherit;">
-                  <font style="vertical-align: inherit;">/month</font>
-                </font>
-              </span>
+        </div>
+        <div class="col-lg-9">
+          <div class="sort-result">
+            <div class="sort-by grid-head">
+              <div>
+                <p>Property Type</p>
+              </div>
+              <div class="review-form">
+                <select id="propertyType" [(ngModel)]="propertyType" class="form-select">
+                  <option value="all">All</option>
+                  <option value="apartment">Apartment</option>
+                  <option value="villa">Villa</option>
+                  <option value="studio">Studio</option>
+                </select>
+              </div>
             </div>
-            <a (click)="viewDetails(property.id)" class="btn next-btn">View Details</a>
+            <div class="price-range grid-head">
+              <div>
+                <p>Price Range</p>
+              </div>
+              <div class="review-form">
+                <select id="priceRange" [(ngModel)]="priceRange" class="form-select">
+                  <option value="all">All</option>
+                  <option value="low">Under $1,000</option>
+                  <option value="medium">$1,000 - $3,000</option>
+                  <option value="high">Above $3,000</option>
+                  <option>Low to High</option>
+                  <option>High to Low</option>
+                </select>
+              </div>
+            </div>
+            <div class="filter-item grid-head">
+              <label for="location" class="form-label">Location</label>
+              <select id="location" [(ngModel)]="location" class="form-select">
+                <option value="all">All</option>
+                <option value="New York">New York</option>
+                <option value="Los Angeles">Los Angeles</option>
+                <option value="Chicago">Chicago</option>
+              </select>
+            </div>
+
+            <div class="filter-item grid-head">
+              <label for="beds" class="form-label">Beds</label>
+              <select id="beds" [(ngModel)]="beds" class="form-select">
+                <option value="0">All</option>
+                <option value="1">1 Bed</option>
+                <option value="2">2 Beds</option>
+                <option value="3">3 Beds</option>
+                <option value="4">4 Beds</option>
+              </select>
+            </div>
           </div>
         </div>
       </div>
     </div>
+    <!-- /Sort Result -->
+
+    <div class=" for-rent p-0">
+      <div class="row">
+
+        <!-- Buy grid -->
+        <div class="col-lg-4 col-md-6" *ngFor="let property of filteredProperties">
+          <div class="product-custom">
+            <div class="profile-widget">
+              <div class="doc-img">
+                <div [id]="'propertyImagesCarousel' + property.id" class="carousel slide" data-bs-ride="carousel">
+                  <div class="carousel-inner">
+                    <div class="carousel-item" *ngFor="let image of property?.images; let i = index"
+                      [class.active]="i === 0">
+                      <img [src]="image" class="img-fluid" loading="lazy" class="d-block w-100" alt="Property Image">
+                    </div>
+                  </div>
+                  <button class="carousel-control-prev" type="button"
+                    [attr.data-bs-target]="'#propertyImagesCarousel' + property.id" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                  </button>
+                  <button class="carousel-control-next" type="button"
+                    [attr.data-bs-target]="'#propertyImagesCarousel' + property.id" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                  </button>
+                </div>
+                <div class="product-amount">
+                  <span>${{ property.price }}</span>
+                </div>
+                <div class="feature-rating">
+                  <div>
+                    <div class="featured">
+                      <span>Featured</span>
+                    </div>
+                    <div class="new-featured">
+                      <span>New</span>
+                    </div>
+                  </div>
+                  <a href="javascript:void(0)">
+                    <div class="favourite">
+                      <span><i class="fa-regular fa-heart"></i></span>
+                    </div>
+                  </a>
+                </div>
+                <div class="user-avatar">
+                  <img src="assets/img/profiles/avatar-01.jpg" alt="User">
+                </div>
+              </div>
+              <div class="pro-content">
+                <div class="rating">
+                  <span class="rating-count">
+                    <i class="fa-solid fa-star checked"></i>
+                    <i class="fa-solid fa-star checked"></i>
+                    <i class="fa-solid fa-star checked"></i>
+                    <i class="fa-solid fa-star checked"></i>
+                    <i class="fa-solid fa-star checked"></i>
+                  </span>
+                  <p class="rating-review"><span>5.0</span>(20 Reviews)</p>
+                </div>
+                <h3 class="title">
+                  <a (click)="viewDetails(property.id)" tabindex="-1">{{ property.title }}</a>
+                </h3>
+                <p><i class="feather-map-pin"></i>{{ property.location }}</p>
+                <ul class="d-flex details">
+                  <li>
+                    <img src="assets/img/icons/bed-icon.svg" alt="bed-icon">
+                    {{ property.beds }} Beds
+                  </li>
+                  <li>
+                    <img src="assets/img/icons/bath-icon.svg" alt="bath-icon">
+                    {{ property.bath }} Baths
+                  </li>
+                  <li>
+                    <img src="assets/img/icons/building-icon.svg" alt="building-icon">
+                    {{ property.area }} Sqft
+                  </li>
+                </ul>
+
+                <ul class="property-category d-flex justify-content-between">
+                  <li>
+                    <span class="list">Listed on : </span>
+                    <span class="date">16 Jan 2023</span>
+                  </li>
+                  <li>
+                    <span class="category list">Category : </span>
+                    <span class="category-value date">{{ property.type }}</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /Buy grid -->
+
+      </div>
+    </div>
   </div>
-</section>
+</div>
+<!-- /Feature Property For Rent -->
