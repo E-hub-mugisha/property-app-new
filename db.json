@@ -258,5 +258,23 @@
       "subject": "hello",
       "message": "message"
     }
+  ],
+  "tenants": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "email": "john@example.com",
+      "phone": "+250 788 123 456",
+      "property": "Modern Apartment",
+      "leaseEnd": "2024-12-31"
+    },
+    {
+      "id": 2,
+      "name": "Jane Smith",
+      "email": "jane@example.com",
+      "phone": "+250 789 456 789",
+      "property": "Luxury Villa",
+      "leaseEnd": "2025-06-30"
+    }
   ]
 }

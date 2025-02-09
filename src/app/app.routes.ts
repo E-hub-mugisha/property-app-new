@@ -11,6 +11,7 @@ import { PropertyDetailComponent } from './pages/property-detail/property-detail
 import { BookingPropertyComponent } from './pages/booking-property/booking-property.component';
 import { BlogsComponent } from './pages/blogs/blogs.component';
 import { BlogdetailComponent } from './pages/blogdetail/blogdetail.component';
+import { TenantsTenantsComponent } from './portal/tenants-tenants/tenants-tenants.component';
 
 export const routes: Routes = [
     { path: 'home', component: HomeComponent },
@@ -26,4 +27,5 @@ export const routes: Routes = [
     { path: 'booking-confirmation/:id', component: BookingPropertyComponent },
     { path: 'blogs', component: BlogsComponent },
     { path: 'blog-detail', component: BlogdetailComponent },
+    { path: 'tenant-portal', component: TenantsTenantsComponent}
 ];
