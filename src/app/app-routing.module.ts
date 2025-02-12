@@ -12,26 +12,50 @@ import { BookingPropertyComponent } from './pages/booking-property/booking-prope
 import { BlogsComponent } from './pages/blogs/blogs.component';
 import { BlogdetailComponent } from './pages/blogdetail/blogdetail.component';
 import { TenantsTenantsComponent } from './portal/tenants-tenants/tenants-tenants.component';
+import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
+import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
+import { TenantsDashboardComponent } from './admin/tenants-dashboard/tenants-dashboard.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'about', component: AboutComponent },
-  { path: 'services', component: ServicesComponent },
-  { path: 'properties', component: PropertiesComponent },
-  { path: 'property/:id', component: PropertyDetailComponent },
-  { path: 'tenants', component: TenantsComponent },
-  { path: 'owners', component: OwnersComponent },
-  { path: 'contact', component: ContactComponent },
-  { path: '**', redirectTo: '', pathMatch: 'full' },
-  { path: 'booking-confirmation/:id', component: BookingPropertyComponent },
-  { path: 'blogs', component: BlogsComponent },
-  { path: 'blog-detail', component: BlogdetailComponent },
-  { path: 'tenants-portal', component: TenantsComponent},
-  { path: 'tenant-portal', component: TenantsTenantsComponent}
+  {
+    path: '',
+    component: MainLayoutComponent, // ✅ Wraps all public pages
+    children: [
+      { path: '', component: HomeComponent },
+      { path: 'about', component: AboutComponent },
+      { path: 'services', component: ServicesComponent },
+      { path: 'properties', component: PropertiesComponent },
+      { path: 'property/:id', component: PropertyDetailComponent },
+      { path: 'tenants', component: TenantsComponent },
+      { path: 'owners', component: OwnersComponent },
+      { path: 'contact', component: ContactComponent },
+      { path: 'booking-confirmation/:id', component: BookingPropertyComponent },
+      { path: 'blogs', component: BlogsComponent },
+      { path: 'blog/:id', component: BlogdetailComponent },
+      { path: 'tenants-portal', component: TenantsComponent },
+      { path: 'tenant-portal', component: TenantsTenantsComponent },
+      { path: 'login', component: LoginComponent},
+      { path: 'register', component: RegisterComponent },
+    ],
+  },
+
+
+  // Admin routes handled by AdminRoutingModule
+  {
+    path: 'admin',
+    component: AdminLayoutComponent, // Wraps all admin pages
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
+  },
+
+  // ✅ Wildcard route moved to the bottom
+  // { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

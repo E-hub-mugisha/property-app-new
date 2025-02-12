@@ -3,10 +3,11 @@ import { TenantService } from '../../services/tenant.service';
 import { HttpClient, HttpClientModule } from "@angular/common/http";
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-tenants-tenants',
-  imports: [CommonModule, HttpClientModule],
+  imports: [CommonModule, HttpClientModule, FormsModule],
   templateUrl: './tenants-tenants.component.html',
   styleUrl: './tenants-tenants.component.css'
 })
@@ -20,6 +21,16 @@ export class TenantsTenantsComponent implements OnInit{
     leaseStart: '',
     leaseEnd: ''
   };
+  
+  editedTenant = {
+    id: '',
+    name: '',
+    email: '',
+    phone: '',
+    propertyId: '',
+    leaseStart: '',
+    leaseEnd: ''
+  }
 
   private apiUrl = 'http://localhost:3000/tenants'; // JSON Server API URL
 
@@ -31,6 +42,7 @@ export class TenantsTenantsComponent implements OnInit{
 
   getAllTenants(): void {
     this.http.get<any[]>(this.apiUrl).subscribe((data) => {
+      
       this.tenants = data;
     });
   }
@@ -40,25 +52,47 @@ export class TenantsTenantsComponent implements OnInit{
   }
 
   /** ✅ Add a New Tenant */
-  addTenant(tenant: any): Observable<any> {
-    return this.http.post<any>(this.apiUrl, tenant);
-  }
-
   addTenant(): void {
-    this.tenantService.addTenant(this.newTenant).subscribe(() => {
-      this.fetchTenants(); // Refresh list after adding
-      this.resetForm(); // Reset form fields
-    });
+    this.http.post(this.apiUrl, this.newTenant).subscribe(
+      (response) => {
+        console.log('Tenant added successfully:', response);
+        alert('Tenant added successfully');
+        this.resetForm();
+        this.getAllTenants();
+      },
+      (error) => {
+        console.error('Error adding tenant:', error);
+        alert('Error adding tenant');
+      }
+    );
   }
 
   /** ✅ Update an Existing Tenant */
-  updateTenant(id: number, tenant: any): Observable<any> {
-    return this.http.put<any>(`${this.apiUrl}/${id}`, tenant);
+  updateTenant(): void {
+    this.http.put(`${this.apiUrl}/${this.editedTenant.id}`, this.editedTenant).subscribe(
+      (response) => {
+        alert('Tenant updated successfully');
+        this.getAllTenants();
+      },
+      (error) => {
+        alert('Error updating tenant');
+      }
+    );
   }
 
   /** ✅ Delete a Tenant */
-  deleteTenant(id: number): Observable<any> {
-    return this.http.delete<any>(`${this.apiUrl}/${id}`);
+  deleteTenant(id: number): void{
+    this.http.delete(`${this.apiUrl}/${id}`).subscribe(
+      (response) => {
+        console.log('Tenant deleted successfully:', response);
+        alert('Tenant deleted successfully');
+        this.getAllTenants();
+      },
+      (error) => {
+        console.error('Error deleting tenant:', error);
+        alert('Error deleting tenant');
+      }
+    )
   }
 
   resetForm(): void {

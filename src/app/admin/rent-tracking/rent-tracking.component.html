@@ -1,0 +1,39 @@
+<div class="container mt-4">
+    <h2>Rent Payment Tracking</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Tenant</th>
+                <th>Property</th>
+                <th>Amount</th>
+                <th>Due Date</th>
+                <th>Status</th>
+                <th>Invoice</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let payment of payments">
+                <td>{{ payment.id }}</td>
+                <td>{{ payment.tenantName }}</td>
+                <td>{{ payment.propertyId }}</td>
+                <td>${{ payment.amount }}</td>
+                <td>{{ payment.dueDate }}</td>
+                <td>
+                    <span [ngClass]="{
+              'text-success': payment.status === 'Paid',
+              'text-warning': payment.status === 'Pending',
+              'text-danger': payment.status === 'Overdue'
+            }">
+                        {{ payment.status }}
+                    </span>
+                </td>
+                <td>
+                    <button class="btn btn-primary btn-sm" (click)="generateInvoice(payment)">
+                      Download Invoice
+                    </button>
+                  </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

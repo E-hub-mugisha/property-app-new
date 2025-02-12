@@ -1,14 +1,21 @@
 <div class="container mt-5">
   <h2>Tenant Management</h2>
+
+  <!-- Add Tenant Button -->
   <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addTenantModal">+ Add Tenant</button>
 
+  <hr>
+
+  <!-- Tenant List -->
+  <h3>Tenant List</h3>
   <table class="table table-bordered mt-3">
     <thead>
       <tr>
         <th>Name</th>
         <th>Email</th>
         <th>Phone</th>
-        <th>Property</th>
+        <th>Property ID</th>
+        <th>Lease Start</th>
         <th>Lease End</th>
         <th>Actions</th>
       </tr>
@@ -18,10 +25,11 @@
         <td>{{ tenant.name }}</td>
         <td>{{ tenant.email }}</td>
         <td>{{ tenant.phone }}</td>
-        <td>{{ tenant.property }}</td>
+        <td>{{ tenant.propertyId }}</td>
+        <td>{{ tenant.leaseStart }}</td>
         <td>{{ tenant.leaseEnd }}</td>
         <td>
-          <button class="btn btn-warning btn-sm">Edit</button>
+          
           <button class="btn btn-danger btn-sm" (click)="deleteTenant(tenant.id)">Delete</button>
         </td>
       </tr>
@@ -71,3 +79,5 @@
       </div>
     </div>
   </div>
+</div>
+

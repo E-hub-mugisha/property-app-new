@@ -1,0 +1,66 @@
+<div class="container mt-4">
+    <h2>Add New Property</h2>
+    <form [formGroup]="propertyForm" (ngSubmit)="onSubmit()">
+      
+      <div class="mb-3">
+        <label>Property Type</label>
+        <select class="form-control" formControlName="type">
+          <option value="studio">Studio</option>
+          <option value="apartment">Apartment</option>
+          <option value="house">House</option>
+          <option value="commercial">Commercial</option>
+        </select>
+      </div>
+  
+      <div class="mb-3">
+        <label>Title</label>
+        <input type="text" class="form-control" formControlName="title">
+      </div>
+  
+      <div class="mb-3">
+        <label>Description</label>
+        <textarea class="form-control" formControlName="description"></textarea>
+      </div>
+  
+      <div class="mb-3">
+        <label>Location</label>
+        <input type="text" class="form-control" formControlName="location">
+      </div>
+  
+      <div class="row">
+        <div class="col-md-4">
+          <label>Price</label>
+          <input type="number" class="form-control" formControlName="price">
+        </div>
+        <div class="col-md-4">
+          <label>Beds</label>
+          <input type="number" class="form-control" formControlName="beds">
+        </div>
+        <div class="col-md-4">
+          <label>Baths</label>
+          <input type="number" class="form-control" formControlName="bath">
+        </div>
+      </div>
+  
+      <div class="mb-3">
+        <label>Area (sq. ft.)</label>
+        <input type="number" class="form-control" formControlName="area">
+      </div>
+  
+      <div class="mb-3">
+        <label>Images</label>
+        <div *ngFor="let image of images.controls; let i = index" class="d-flex mb-2">
+          <input type="file" class="form-control me-2" [formControlName]="i">
+          <button type="button" class="btn btn-danger" (click)="removeImage(i)">Remove</button>
+        </div>
+        <button type="button" class="btn btn-primary" (click)="addImage()">Add Image</button>
+      </div>
+  
+      <div class="form-check mb-3">
+        <input type="checkbox" class="form-check-input" formControlName="featured">
+        <label class="form-check-label">Featured Property</label>
+      </div>
+  
+      <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+  </div>

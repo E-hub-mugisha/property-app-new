@@ -1,0 +1,36 @@
+<div class="container mt-4">
+    <h2>Rent Payment Collection</h2>
+    <form [formGroup]="rentForm" (ngSubmit)="onSubmit()">
+
+        <div class="mb-3">
+            <label>Tenant Name</label>
+            <input type="text" class="form-control" formControlName="tenantName">
+        </div>
+
+        <div class="mb-3">
+            <label>Property ID</label>
+            <input type="text" class="form-control" formControlName="propertyId">
+        </div>
+
+        <div class="mb-3">
+            <label>Rent Amount</label>
+            <input type="number" class="form-control" formControlName="amount">
+        </div>
+
+        <div class="mb-3">
+            <label>Due Date</label>
+            <input type="date" class="form-control" formControlName="dueDate">
+        </div>
+
+        <div class="mb-3">
+            <label>Payment Method</label>
+            <select class="form-control" formControlName="paymentMethod">
+                <option value="credit-card">Credit Card</option>
+                <option value="bank-transfer">Bank Transfer</option>
+                <option value="mobile-payment">Mobile Payment</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-success">Submit Payment</button>
+    </form>
+</div>

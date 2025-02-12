@@ -1,0 +1,84 @@
+<div class="container mt-5">
+    <h2>Tenant Management</h2>
+  
+    <!-- Add Tenant Button -->
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addTenantModal">+ Add Tenant</button>
+  
+    <hr>
+  
+    <!-- Tenant List -->
+    <h3>Tenant List</h3>
+    <table class="table table-bordered mt-3">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Property ID</th>
+          <th>Lease Start</th>
+          <th>Lease End</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tenant of tenants">
+          <td>{{ tenant.name }}</td>
+          <td>{{ tenant.email }}</td>
+          <td>{{ tenant.phone }}</td>
+          <td>{{ tenant.propertyId }}</td>
+          <td>{{ tenant.leaseStart }}</td>
+          <td>{{ tenant.leaseEnd }}</td>
+          <td>
+            
+            <button class="btn btn-danger btn-sm" (click)="deleteTenant(tenant.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <!-- ✅ Bootstrap Modal for Adding Tenant -->
+  <div class="modal fade" id="addTenantModal" tabindex="-1" aria-labelledby="addTenantModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addTenantModalLabel">Add New Tenant</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form #tenantForm="ngForm">
+            <div class="mb-3">
+              <label class="form-label">Name:</label>
+              <input type="text" class="form-control" [(ngModel)]="newTenant.name" name="name" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Email:</label>
+              <input type="email" class="form-control" [(ngModel)]="newTenant.email" name="email" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Phone:</label>
+              <input type="text" class="form-control" [(ngModel)]="newTenant.phone" name="phone" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Property ID:</label>
+              <input type="text" class="form-control" [(ngModel)]="newTenant.propertyId" name="propertyId" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Lease Start Date:</label>
+              <input type="date" class="form-control" [(ngModel)]="newTenant.leaseStart" name="leaseStart" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Lease End Date:</label>
+              <input type="date" class="form-control" [(ngModel)]="newTenant.leaseEnd" name="leaseEnd" required>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-success" (click)="addTenant()" data-bs-dismiss="modal">Add Tenant</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  

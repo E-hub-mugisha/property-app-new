@@ -1,0 +1,72 @@
+<div class="container mt-4">
+    <h2>Financial Report</h2>
+    <button class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#incomeExpenseModal">Add income Expense</button>
+    <!-- Income Statement -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5>Income Statement</h5>
+        </div>
+        <div class="card-body">
+            <p>Total Income: ${{ generateIncomeStatement().totalIncome }}</p>
+            <p>Total Expenses: ${{ generateIncomeStatement().totalExpenses }}</p>
+            <p>Net Income: ${{ generateIncomeStatement().netIncome }}</p>
+        </div>
+    </div>
+
+    <!-- Cash Flow -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5>Cash Flow</h5>
+        </div>
+        <div class="card-body">
+            <p>Cash In: ${{ generateCashFlow().cashIn }}</p>
+            <p>Cash Out: ${{ generateCashFlow().cashOut }}</p>
+            <p>Net Cash Flow: ${{ generateCashFlow().netCashFlow }}</p>
+        </div>
+    </div>
+
+    <!-- Tax Summary -->
+    <div class="card">
+        <div class="card-header">
+            <h5>Tax Summary</h5>
+        </div>
+        <div class="card-body">
+            <p>Taxable Income: ${{ generateIncomeStatement().netIncome }}</p>
+            <!-- Add further tax calculations as needed -->
+        </div>
+    </div>
+</div>
+
+<!-- Modal for Add/Edit income Expense -->
+<div class="modal fade" id="incomeExpenseModal" tabindex="-1" aria-labelledby="incomeExpenseModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="incomeExpenseModalLabel">Add income Expense</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h2>Add Income or Expense</h2>
+                <form (ngSubmit)="onSubmit()" [formGroup]="incomeExpenseForm">
+                    <div class="mb-3">
+                        <label for="amount" class="form-label">Amount</label>
+                        <input type="number" class="form-control" id="amount" formControlName="amount" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <input type="text" class="form-control" id="description" formControlName="description" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="category" class="form-label">Category</label>
+                        <select class="form-select" id="category" formControlName="category">
+                            <option value="Income">Income</option>
+                            <option value="Expense">Expense</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

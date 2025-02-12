@@ -1,0 +1,68 @@
+<div class="container mt-4">
+    <h2>Available Engineers</h2>
+    <button class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#addEngineerModal">Add Engineer</button>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Expertise</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let engineer of engineers">
+                <td>{{ engineer.id }}</td>
+                <td>{{ engineer.name }}</td>
+                <td>{{ engineer.expertise }}</td>
+                <td>
+                    <span [ngClass]="{
+              'text-success': engineer.status === 'Available',
+              'text-danger': engineer.status === 'Busy'
+            }">
+                        {{ engineer.status }}
+                    </span>
+                </td>
+                <td>
+                    <button *ngIf="engineer.status === 'Available'" class="btn btn-primary btn-sm"
+                        (click)="selectEngineer(engineer)">Assign</button>
+                    <button class="btn btn-warning btn-sm">Edit</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Modal for Add/Edit Engineer -->
+    <div class="modal fade" id="addEngineerModal" tabindex="-1" aria-labelledby="engineerModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="engineerModalLabel">Add Engineer</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form [formGroup]="engineersForm" (ngSubmit)="onSubmit()">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" id="name" class="form-control" formControlName="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="expertise" class="form-label">Expertise</label>
+                            <input type="text" id="expertise" class="form-control" formControlName="expertise" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="status" class="form-label">Status</label>
+                            <select id="status" class="form-select" formControlName="status" required>
+                                <option value="Available">Available</option>
+                                <option value="Busy">Busy</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Add Engineer</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

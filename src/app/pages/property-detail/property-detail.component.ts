@@ -26,12 +26,12 @@ export class PropertyDetailComponent implements OnInit {
     console.log('Property ID:', propertyId);
 
     if (propertyId) {
-      this.fetchPropertyById(Number(propertyId)); // Fetch property data
+      this.fetchPropertyById(propertyId); // Fetch property data
     }
   }
 
   // Fetch property details by ID
-  fetchPropertyById(id: number): void {
+  fetchPropertyById(id: string): void {
     this.http.get<any>(`${this.apiUrl}/${id}`).subscribe(
       (data) => {
         this.property = data;

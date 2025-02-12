@@ -1,0 +1,40 @@
+<div class="container mt-4">
+    <h2>Maintenance Requests</h2>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Tenant</th>
+          <th>Property</th>
+          <th>Issue</th>
+          <th>Description</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let request of maintenanceRequests">
+          <td>{{ request.id }}</td>
+          <td>{{ request.tenantName }}</td>
+          <td>{{ request.propertyId }}</td>
+          <td>{{ request.issue }}</td>
+          <td>{{ request.description }}</td>
+          <td>
+            <span [ngClass]="{
+              'text-warning': request.status === 'Pending',
+              'text-primary': request.status === 'In Progress',
+              'text-success': request.status === 'Completed'
+            }">
+              {{ request.status }}
+            </span>
+          </td>
+          <td>
+            <button *ngIf="request.status === 'Pending'" class="btn btn-primary btn-sm" (click)="updateStatus(request, 'In Progress')">Start</button>
+            <button *ngIf="request.status === 'In Progress'" class="btn btn-success btn-sm" (click)="updateStatus(request, 'Completed')">Complete</button>
+            <a [routerLink]="['/admin/maintenance/edit', request.id]" class="btn btn-warning btn-sm">Edit</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

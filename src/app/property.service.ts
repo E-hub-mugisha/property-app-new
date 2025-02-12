@@ -6,6 +6,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class PropertyService {
+  getPropertyById(propertyId: string | null) {
+    throw new Error('Method not implemented.');
+  }
   private apiUrl = 'http://localhost:3000/properties'; // URL of JSON Server
 
   constructor(private http: HttpClient) {}

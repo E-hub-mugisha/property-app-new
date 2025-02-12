@@ -1,0 +1,33 @@
+<div class="container mt-4">
+    <h2>Add/Update Maintenance Request</h2>
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="tenantName">Tenant Name</label>
+        <input type="text" id="tenantName" [(ngModel)]="request.tenantName" name="tenantName" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="propertyId">Property ID</label>
+        <input type="text" id="propertyId" [(ngModel)]="request.propertyId" name="propertyId" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="issue">Issue</label>
+        <input type="text" id="issue" [(ngModel)]="request.issue" name="issue" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea id="description" [(ngModel)]="request.description" name="description" class="form-control" required></textarea>
+      </div>
+      <div class="form-group">
+        <label for="assignedTo">Assign Engineer</label>
+        <select id="assignedTo" [(ngModel)]="request.assignedTo" name="assignedTo" class="form-control" (change)="assignEngineer(request.assignedTo)">
+          <option *ngFor="let engineer of engineers" [value]="engineer.name">{{ engineer.name }} ({{ engineer.expertise }})</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="scheduledDate">Scheduled Date</label>
+        <input type="date" id="scheduledDate" [(ngModel)]="request.scheduledDate" name="scheduledDate" class="form-control">
+      </div>
+      <button type="submit" class="btn btn-success mt-3">Submit</button>
+    </form>
+  </div>
+  

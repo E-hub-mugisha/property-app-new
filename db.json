@@ -1,21 +1,21 @@
 {
   "properties": [
     {
-      "id": "1",
       "type": "apartment",
-      "price": 1200,
+      "price": 500,
       "title": "Modern Apartment",
       "description": "A stylish and modern apartment located in the heart of Kayonza. Featuring 3 spacious bedrooms, 2 fully equipped bathrooms, and a large living area with 1,200 sq. ft. of space. Perfect for families seeking comfort and convenience.",
+      "location": "Rwamagana, Rwanda",
+      "beds": 3,
+      "bath": 2,
+      "area": 1200,
+      "featured": true,
       "images": [
         "assets/img/properties/modern-apartment-architecture.jpg",
         "assets/img/properties/luxury-water-swimming-resort-hotel.jpg",
         "assets/img/properties/modern-apartment-architecture.jpg"
       ],
-      "location": "Kayonza, Rwanda",
-      "beds": 3,
-      "bath": 2,
-      "area": 1200,
-      "featured": true
+      "id": "1"
     },
     {
       "id": "2",
@@ -220,6 +220,32 @@
       "phone": "0782390919",
       "date": "2025-02-06",
       "time": "12:24"
+    },
+    {
+      "id": "151d",
+      "propertyId": "1",
+      "checkIn": "",
+      "checkOut": "",
+      "guests": 0,
+      "total": 1200,
+      "name": "mugisha eric",
+      "email": "kabosierik@gmail.com",
+      "phone": "0782390919",
+      "date": "2025-02-12",
+      "time": "11:24"
+    },
+    {
+      "id": "043f",
+      "propertyId": "5",
+      "checkIn": "",
+      "checkOut": "",
+      "guests": 0,
+      "total": 8000,
+      "name": "mugisha eric",
+      "email": "kabosierik@gmail.com",
+      "phone": "0782390919",
+      "date": "2025-02-12",
+      "time": "07:56"
     }
   ],
   "contacts": [
@@ -261,20 +287,228 @@
   ],
   "tenants": [
     {
+      "id": "c0ec",
+      "name": "mugisha eric",
+      "email": "kabosierik@gmail.com",
+      "phone": "0782390919",
+      "propertyId": "12345",
+      "leaseStart": "2025-02-11",
+      "leaseEnd": "2025-02-15"
+    },
+    {
+      "id": "3c31",
+      "name": "Mugisha Eric",
+      "email": "kericmugisha@gmail.com",
+      "phone": "0782390919",
+      "propertyId": "12345",
+      "leaseStart": "2025-02-28",
+      "leaseEnd": "2025-03-08"
+    },
+    {
+      "id": "670f",
+      "name": "erik erik",
+      "email": "ts@hotmail.com",
+      "phone": "1234567890",
+      "propertyId": "12345",
+      "leaseStart": "2025-02-25",
+      "leaseEnd": "2025-02-28"
+    },
+    {
+      "id": "0107",
+      "name": "kabosier ",
+      "email": "eric.mugisha@tek-experts.com",
+      "phone": "0782390919",
+      "propertyId": "170",
+      "leaseStart": "2025-02-12",
+      "leaseEnd": "2025-02-27"
+    }
+  ],
+  "blogs": [
+    {
+      "id": "1",
+      "image": "assets/img/blog/blog-1.jpg",
+      "alt": "Blog Image",
+      "link": "/blog-detail",
+      "property": "Property",
+      "title": "How to achieve financial independence",
+      "description": "There are many variations of passages of lorem ipsum available.",
+      "author": {
+        "name": "Rafael",
+        "avatar": "assets/img/profiles/avatar-01.jpg",
+        "posted_on": "15 Jan 2023"
+      }
+    },
+    {
+      "id": "2",
+      "image": "assets/img/blog/blog-2.jpg",
+      "alt": "Blog Image",
+      "link": "/blog-detail",
+      "property": "Villa",
+      "title": "The most popular cities for homebuyers",
+      "description": "There are many variations of passages of lorem ipsum available.",
+      "author": {
+        "name": "John",
+        "avatar": "assets/img/profiles/avatar-03.jpg",
+        "posted_on": "15 Jan 2023"
+      }
+    },
+    {
+      "id": "3",
+      "image": "assets/img/blog/blog-3.jpg",
+      "alt": "Blog Image",
+      "link": "/blog-detail",
+      "property": "Godown",
+      "title": "Learn how real estate really shapes our future",
+      "description": "There are many variations of passages of lorem ipsum available.",
+      "author": {
+        "name": "Eric Krok",
+        "avatar": "assets/img/profiles/avatar-05.jpg",
+        "posted_on": "15 Jan 2023"
+      }
+    },
+    {
+      "id": "4",
+      "image": "assets/img/blog/blog-4.jpg",
+      "alt": "Image",
+      "link": "/blog-detail",
+      "property": "Factory",
+      "title": "30 Real Estate Blogs Every Realtor Should....",
+      "description": "There are many variations of passages of lorem ipsum available.",
+      "author": {
+        "name": "Anif",
+        "avatar": "assets/img/profiles/avatar-07.jpg",
+        "posted_on": "15 Jan 2023"
+      }
+    },
+    {
+      "id": "5",
+      "image": "assets/img/blog/blog-5.jpg",
+      "alt": "Image",
+      "link": "/blog-detail",
+      "property": "Guest house",
+      "title": "Here Are Easy Ways To Know How To...",
+      "description": "There are many variations of passages of lorem ipsum available.",
+      "author": {
+        "name": "Ramos",
+        "avatar": "assets/img/profiles/avatar-08.jpg",
+        "posted_on": "14 Jan 2023"
+      }
+    },
+    {
+      "id": "6",
+      "image": "assets/img/blog/blog-6.jpg",
+      "alt": "Image",
+      "link": "/blog-detail",
+      "property": "House",
+      "title": "Importance of Virtual Reality in Real Estate",
+      "description": "There are many variations of passages of lorem ipsum available.",
+      "author": {
+        "name": "Patrick",
+        "avatar": "assets/img/profiles/avatar-10.jpg",
+        "posted_on": "12 Jan 2023"
+      }
+    }
+  ],
+  "payments": [
+    {
+      "id": "1",
+      "tenantName": "Eric Mugisha",
+      "propertyId": "P001",
+      "amount": "750",
+      "dueDate": "2025-03-01",
+      "status": "Paid"
+    },
+    {
+      "id": "2",
+      "tenantName": "'Alice Uwase'",
+      "propertyId": "'P002'",
+      "amount": "500",
+      "dueDate": "'2025-03-05'",
+      "status": "'Pending'"
+    },
+    {
+      "id": "3",
+      "tenantName": "'John Doe'",
+      "propertyId": "'P003'",
+      "amount": "1000",
+      "dueDate": "'2025-02-28'",
+      "status": "'Overdue'"
+    }
+  ],
+  "engineers": [
+    {
       "id": 1,
       "name": "John Doe",
-      "email": "john@example.com",
-      "phone": "+250 788 123 456",
-      "property": "Modern Apartment",
-      "leaseEnd": "2024-12-31"
+      "expertise": "Plumbing",
+      "status": "Available"
     },
     {
       "id": 2,
-      "name": "Jane Smith",
-      "email": "jane@example.com",
-      "phone": "+250 789 456 789",
-      "property": "Luxury Villa",
-      "leaseEnd": "2025-06-30"
+      "name": "Alice Uwase",
+      "expertise": "Electrical",
+      "status": "Available"
+    },
+    {
+      "id": 3,
+      "name": "Eric Mugisha",
+      "expertise": "HVAC",
+      "status": "Busy"
+    },
+    {
+      "id": "1f59",
+      "name": "Mugisha Eric",
+      "expertise": "TV",
+      "status": "Available"
+    }
+  ],
+  "maintenance_requests": [
+    {
+      "id": "1",
+      "tenantName": "Jane Doe",
+      "propertyId": "101",
+      "issue": "Leaky faucet",
+      "description": "The kitchen faucet is leaking water, causing inconvenience.",
+      "status": "Pending",
+      "assignedTo": "John Doe",
+      "scheduledDate": "2025-02-15"
+    },
+    {
+      "id": "2",
+      "tenantName": "Samuel Nkurunziza",
+      "propertyId": "202",
+      "issue": "Electrical short circuit",
+      "description": "There is a short circuit in the living room lights.",
+      "status": "In Progress",
+      "assignedTo": "Alice Uwase",
+      "scheduledDate": "2025-02-16"
+    }
+  ],
+  "incomes": [
+    {
+      "id": 1,
+      "date": "2025-02-10",
+      "amount": 1500,
+      "tenant": "John Doe",
+      "property": "Apartment 101",
+      "description": "Monthly rent"
+    }
+  ],
+  "expenses": [
+    {
+      "id": 1,
+      "date": "2025-02-05",
+      "amount": 200,
+      "category": "Utilities",
+      "property": "Apartment 101",
+      "description": "Electricity bill"
+    },
+    {
+      "id": 2,
+      "date": "2025-02-06",
+      "amount": 150,
+      "category": "Repairs",
+      "property": "Apartment 101",
+      "description": "Plumbing repair"
     }
   ]
 }
