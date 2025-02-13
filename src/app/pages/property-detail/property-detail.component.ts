@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { PropertyService } from '../../services/frontend/property.service';
 
 @Component({
   selector: 'app-property-detail',
@@ -14,41 +14,27 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 export class PropertyDetailComponent implements OnInit {
 
 
-  property: any | null = null; // Holds property data
-  private apiUrl = 'http://localhost:3000/properties'; // Base API URL
-  googleMapsUrl: SafeResourceUrl | null = null;
+  property: any = null;
 
-  constructor(private route: ActivatedRoute, private http: HttpClient, private router: Router, private sanitizer: DomSanitizer) { }
+  constructor(private route: ActivatedRoute, private router: Router, private propertyService: PropertyService) {}
 
   ngOnInit(): void {
-    // Get the property ID from the route
-    const propertyId = this.route.snapshot.paramMap.get('id');
-    console.log('Property ID:', propertyId);
-
-    if (propertyId) {
-      this.fetchPropertyById(propertyId); // Fetch property data
-    }
+    const id = Number(this.route.snapshot.paramMap.get('id')); // Get ID from URL
+    this.fetchPropertyDetail(id);
   }
 
-  // Fetch property details by ID
-  fetchPropertyById(id: string): void {
-    this.http.get<any>(`${this.apiUrl}/${id}`).subscribe(
+  fetchPropertyDetail(id: number): void {
+    this.propertyService.getById(id).subscribe(
       (data) => {
-        this.property = data;
-        console.log('Fetched Property:', data);
-        this.sanitizeGoogleMapsUrl(data.location);
+        this.property = { 
+          ...data, 
+          images: typeof data.images === 'string' ? JSON.parse(data.images) : data.images
+        };
       },
       (error) => {
         console.error('Error fetching property:', error);
-        this.property = null; // Handle error by setting property to null
       }
     );
-  }
-
-  // Method to sanitize the Google Maps URL
-  sanitizeGoogleMapsUrl(location: string): void {
-    const url = `https://www.google.com/maps/embed/v1/place?q=${encodeURIComponent(location)}`;
-    this.googleMapsUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url); // Sanitize URL
   }
 
 

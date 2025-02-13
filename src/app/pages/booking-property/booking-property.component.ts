@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
+import { PropertyService } from '../../services/frontend/property.service';
+import { BookingService } from '../../services/frontend/booking.service';
 
 @Component({
   selector: 'app-booking-property',
@@ -12,41 +14,41 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class BookingPropertyComponent implements OnInit {
 
-  currentStep = 1; // Tracks the current step of the form
-  property: any | null = null; // Holds property details
+  currentStep = 1; // Multi-step form tracker
+  property: any | null = null; // Property details
   bookingData = {
-    propertyId: 0,
+    property_id: 0,
     checkIn: '',
     checkOut: '',
-    guests: 0,
+    guests: 1,
     total: 0,
     name: '',
     email: '',
     phone: '',
     date: '',
     time: '',
-  }; // Holds booking form data
-  private propertiesApiUrl = 'http://localhost:3000/properties'; // API URL for properties
-  private bookingsApiUrl = 'http://localhost:3000/bookings'; // API URL for bookings
-  
+  }; // Booking form data
 
-  constructor(private route: ActivatedRoute, private http: HttpClient, private router: Router) {}
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private propertyService: PropertyService,
+    private bookingService: BookingService
+  ) {}
 
   ngOnInit(): void {
-    // Get property ID from route parameters
-    const propertyId = this.route.snapshot.paramMap.get('id');
-    if (propertyId) {
-      this.fetchPropertyDetails(Number(propertyId));
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id) {
+      this.fetchPropertyDetails(Number(id));
     }
   }
 
-  // Fetch property details from the API
-  fetchPropertyDetails(propertyId: number): void {
-    this.http.get<any>(`${this.propertiesApiUrl}/${propertyId}`).subscribe(
+  fetchPropertyDetails(id: number): void {
+    this.propertyService.getById(id).subscribe(
       (data) => {
         this.property = data;
-        this.bookingData.propertyId = data.id;
-        this.bookingData.total = data.price; // Initialize total with property price
+        this.bookingData.property_id = data.id;
+        this.bookingData.total = data.price; // Initialize total price
       },
       (error) => {
         console.error('Error fetching property details:', error);
@@ -55,33 +57,31 @@ export class BookingPropertyComponent implements OnInit {
     );
   }
 
-  // Navigate to the next step
   nextStep(): void {
     if (this.currentStep < 3) {
       this.currentStep++;
     }
   }
 
-  // Navigate to the previous step
   previousStep(): void {
     if (this.currentStep > 1) {
       this.currentStep--;
     }
   }
 
-  // Confirm booking (final step)
   confirmBooking(): void {
-    this.http.post(this.bookingsApiUrl, this.bookingData).subscribe(
+    this.bookingData.property_id = this.property?.id;
+    this.bookingService.createBooking(this.bookingData).subscribe(
       (response) => {
-        console.log('Booking saved:', response);
-        alert('Booking confirmed and saved!');
+        console.log('Booking confirmed:', response);
+        alert('Booking successfully completed!');
         setTimeout(() => {
-          this.router.navigate(['/']); // Redirect to the home page after 2 seconds
+          this.router.navigate(['/']);
         }, 2000);
       },
       (error) => {
-        console.error('Error saving booking:', error);
-        alert('There was an error saving your booking. Please try again.');
+        console.error('Error confirming booking:', error);
+        alert('Error confirming booking. Please try again.');
       }
     );
   }

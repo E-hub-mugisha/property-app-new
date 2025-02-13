@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { BlogsService } from '../../services/frontend/blogs.service';
 
 @Component({
   selector: 'app-blogdetail',
@@ -10,30 +11,24 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './blogdetail.component.css'
 })
 export class BlogdetailComponent {
-  blog: any | null = null;
-  private apiUrl = 'http://localhost:3000/blogs';
-  image: any;
+  blog: any;
 
-  constructor(private route: ActivatedRoute, private http: HttpClient) { }
+  constructor(private route: ActivatedRoute, private blogService: BlogsService) { }
 
   ngOnInit(): void {
-    const blogId = this.route.snapshot.paramMap.get('id');
-    console.log('Blog ID:', blogId);
-
-    if (blogId) {
-      this.fetchBlogById(Number(blogId));
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    if (id) {
+      this.getBlogDetails(id);
     }
   }
 
-  fetchBlogById(id: number): void {
-    this.http.get<any>(`${this.apiUrl}/${id}`).subscribe(
-      (data) => {
-        this.blog = data;
-        console.log('Fetched Blog:', data);
+  getBlogDetails(id: number): void {
+    this.blogService.getById(id).subscribe(
+      (data: any[]) => {
+        this.blog = data.find(blog => blog.id === id);
       },
       (error) => {
-        console.error('Error fetching blog:', error);
-        this.blog = null;
+        console.error('Error fetching blog details', error);
       }
     );
   }

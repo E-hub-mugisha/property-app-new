@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { PropertyService } from '../../property.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { PropertyService } from '../../services/frontend/property.service';
 
 @Component({
   selector: 'app-featured-property',
@@ -13,12 +13,12 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
   styleUrls: ['./featured-property.component.css'] // Fixed styleUrls
 })
 export class FeaturedPropertyComponent implements OnInit {
-  
+
   featuredProperties: any[] = []; // Holds featured property data
 
-  private apiUrl = 'http://localhost:3000/properties';
-  
-  constructor(private http: HttpClient, private router: Router) {}
+  albums: any[] = [];
+
+  constructor(private http: HttpClient, private router: Router, private propertyService: PropertyService) { }
 
   ngOnInit(): void {
     this.fetchFeaturedProperties(); // Fetch featured properties
@@ -26,15 +26,27 @@ export class FeaturedPropertyComponent implements OnInit {
 
   // Fetch featured properties
   fetchFeaturedProperties(): void {
-    this.http.get<any[]>(`${this.apiUrl}?featured=true`).subscribe(
+    this.propertyService.getFeatured().subscribe(
       (data) => {
-        this.featuredProperties = data;
-        console.log('Fetched Featured Properties:', data);
+        this.featuredProperties = data.map((property: any) => ({
+          ...property,
+          images: typeof property.images === 'string' ? JSON.parse(property.images) : property.images
+        }));
+        this.initializeAlbum();
       },
       (error) => {
-        console.error('Error fetching featured properties:', error);
+        console.error('Error fetching properties:', error);
       }
     );
+  }
+
+  initializeAlbum(): void {
+    this.albums = []; // Clear previous albums to avoid duplicates
+    this.featuredProperties.forEach((property: { title: string; images: string[] }) => {
+      property.images.forEach((image: string) => {
+        this.albums.push({ src: image, caption: property.title, thumb: image });
+      });
+    });
   }
 
   // Navigate to property details

@@ -10,7 +10,7 @@
           </div>
           <div class="blog-content">
             <div class="blog-property">
-              <span>{{ blog.property }}</span>
+              <span>{{ blog.category }}</span>
             </div>
             <div class="blog-title">
               <h3><a (click)="viewDetails(blog.id)">{{ blog.title }}</a></h3>
@@ -21,8 +21,8 @@
                 <a href="javascript:void(0);"><img src="assets/img/profiles/avatar-01.jpg" class="img-fluid avatar"
                     alt="User"></a>
                 <div class="user-name">
-                  <a href="javascript:void(0);">{{ blog.author.name }}</a>
-                  <p>Posted on : {{ blog.author.posted_on }}</p>
+                  <a href="javascript:void(0);">{{ blog.author_name }}</a>
+                  <p>Posted on : {{ blog.created_at }}</p>
                 </div>
               </li>
               <li>

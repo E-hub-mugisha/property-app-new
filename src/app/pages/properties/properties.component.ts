@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Lightbox, LightboxModule } from 'ngx-lightbox';  // ✅ Import Lightbox
+import { PropertyService } from '../../services/frontend/property.service';
 
 @Component({
   selector: 'app-properties',
@@ -22,19 +23,20 @@ export class PropertiesComponent {
   priceRange: string = 'all';
   location: string = 'all'; // Selected location
   beds: number = 0; // Selected number of beds
-  
-  private apiUrl = 'http://localhost:3000/properties';
 
-  constructor(private http: HttpClient, private router: Router, private lightbox: Lightbox) {   }
+  constructor(private propertyService: PropertyService, private http: HttpClient, private router: Router, private lightbox: Lightbox) { }
 
   ngOnInit(): void {
     this.fetchProperties();
   }
 
   fetchProperties(): void {
-    this.http.get<any[]>(this.apiUrl).subscribe(
+    this.propertyService.getAll().subscribe(
       (data) => {
-        this.properties = data;
+        this.properties = data.map((property: any) => ({
+          ...property,
+          images: typeof property.images === 'string' ? JSON.parse(property.images) : property.images
+        }));
         this.initializeAlbum();
       },
       (error) => {
@@ -42,6 +44,7 @@ export class PropertiesComponent {
       }
     );
   }
+
 
   initializeAlbum(): void {
     this.albums = []; // Clear previous albums to avoid duplicates
@@ -60,7 +63,7 @@ export class PropertiesComponent {
     this.lightbox.close();
   }
 
-  
+
   get filteredProperties() {
     return this.properties.filter((property) => {
       const matchesType = this.propertyType === 'all' || property.type === this.propertyType;
