@@ -15,7 +15,6 @@ import { EngineerListComponent } from './engineers/engineer-list/engineer-list.c
 import { FinancialsDashboardComponent } from './financials-dashboard/financials-dashboard.component';
 
 const adminRoutes: Routes = [
-  { path: '', redirectTo: 'dashboard', pathMatch: 'full' }, // Default redirect
   { path: 'dashboard', component: AdminDashboardComponent },
   { path: 'tenants', component: TenantsDashboardComponent },
   { path: 'properties', component: PropertiesDashboardComponent },

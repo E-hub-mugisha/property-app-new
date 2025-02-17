@@ -31,6 +31,7 @@ import { RoleGuard } from './auth/role.guard';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { AuthComponent } from './layouts/auth-layout/auth/auth.component';
 
 export const routes: Routes = [
     {
@@ -50,11 +51,17 @@ export const routes: Routes = [
             { path: 'blog/:id', component: BlogdetailComponent },
             { path: 'tenants-portal', component: TenantsComponent },
             { path: 'tenant-portal', component: TenantsTenantsComponent },
-            { path: 'login', component: LoginComponent},
-            { path: 'register', component: RegisterComponent },
         ],
     },
 
+    {
+        path: 'auth',   // Auth routes use their own layout
+        component: AuthComponent,  // Wraps login and register pages
+        children: [
+            { path: 'login', component: LoginComponent },
+            { path: 'register', component: RegisterComponent },
+        ],
+    },
 
     // Admin routes protected with AuthGuard and RoleGuard
     {
@@ -79,5 +86,5 @@ export const routes: Routes = [
     },
 
     // Wildcard route for 404 page
-  { path: '**', component: NotFoundComponent },
+    { path: '**', component: NotFoundComponent },
 ];

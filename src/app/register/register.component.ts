@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { Router } from '@angular/router';
 import { AuthService } from '../auth/auth.service'; 
 import { CommonModule } from '@angular/common';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register',
@@ -60,10 +61,12 @@ export class RegisterComponent {
     this.authService.register(this.registerForm.value).subscribe(
       (response) => {
         // Successfully registered, redirect or show success message
+        Swal.fire('Success', 'Account created successfully!', 'success');
         this.router.navigate(['/login']);
       },
       (error) => {
         // Handle error (e.g., email already taken)
+        Swal.fire('Error', 'Registration failed. Try again.', 'error');
         this.errorMessage = error.error.message || 'Registration failed';
       }
     );

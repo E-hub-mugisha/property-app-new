@@ -18,9 +18,6 @@ import { FinancialsDashboardComponent } from './financials-dashboard/financials-
 
 
 @NgModule({
-  declarations: [
-    AdminComponent,
-  ],
   imports: [
     CommonModule,
     AdminRoutingModule,

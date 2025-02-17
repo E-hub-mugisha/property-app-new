@@ -4,15 +4,16 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { LightboxModule } from 'ngx-lightbox';
+import { AuthInterceptor } from './services/auth.interceptor';
+import { AuthModule } from './auth/auth.module';
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
   imports: [
+    AppComponent,
     BrowserModule,
     AppRoutingModule,
     FormsModule, // Import FormsModule for ngModel
@@ -23,9 +24,10 @@ import { LightboxModule } from 'ngx-lightbox';
       positionClass: 'toast-top-right',
       preventDuplicates: true,
     }),
-    LightboxModule
+    LightboxModule,
+    AuthModule,
+    AdminModule
   ],
-  providers: [],
-  bootstrap: [AppComponent],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
 })
 export class AppModule {}

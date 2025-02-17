@@ -7,6 +7,9 @@ import { BehaviorSubject, Observable, tap } from 'rxjs';
 })
 export class AuthService {
   private apiUrl = 'http://127.0.0.1:8000/api';
+
+  private isAuthenticated = false;
+
   private userSubject = new BehaviorSubject<any>(null);
 
   constructor(private http: HttpClient) {
@@ -35,6 +38,7 @@ export class AuthService {
       tap((response: any) => {
         localStorage.setItem('token', response.token);
         this.userSubject.next(response.user);
+        this.isAuthenticated = true;
       })
     );
   }
@@ -43,11 +47,12 @@ export class AuthService {
     this.http.post(`${this.apiUrl}/logout`, {}).subscribe(() => {
       localStorage.removeItem('token');
       this.userSubject.next(null);
+      this.isAuthenticated = false;
     });
   }
 
-  isAuthenticated(): boolean {
-    return !!localStorage.getItem('token');
+  checkAuthentication(): boolean {
+    return this.isAuthenticated;
   }
 
   getRole(): string {

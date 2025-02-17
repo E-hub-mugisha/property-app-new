@@ -14,10 +14,9 @@ import { BlogdetailComponent } from './pages/blogdetail/blogdetail.component';
 import { TenantsTenantsComponent } from './portal/tenants-tenants/tenants-tenants.component';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
-import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
-import { TenantsDashboardComponent } from './admin/tenants-dashboard/tenants-dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { AuthComponent } from './layouts/auth-layout/auth/auth.component';
 
 const routes: Routes = [
   {
@@ -37,17 +36,31 @@ const routes: Routes = [
       { path: 'blog/:id', component: BlogdetailComponent },
       { path: 'tenants-portal', component: TenantsComponent },
       { path: 'tenant-portal', component: TenantsTenantsComponent },
-      { path: 'login', component: LoginComponent},
-      { path: 'register', component: RegisterComponent },
+      // { path: 'login', component: LoginComponent},
+      // { path: 'register', component: RegisterComponent },
     ],
   },
 
+  {
+    path: 'auth',
+    component: AuthComponent,  // This will wrap your login and register pages
+    children: [
+      { path: 'login', component: LoginComponent },
+      { path: 'register', component: RegisterComponent }
+    ]
+  },
 
   // Admin routes handled by AdminRoutingModule
   {
     path: 'admin',
     component: AdminLayoutComponent, // Wraps all admin pages
     loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
+  },
+
+  {
+    path: 'auth',
+    component: AuthComponent,
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),
   },
 
   // ✅ Wildcard route moved to the bottom
