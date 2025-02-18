@@ -3,20 +3,18 @@
         <div class="nk-content-inner">
             <div class="nk-content-body">
                 <div class="components-preview wide-md mx-auto">
-
                     <div class="nk-block nk-block-lg">
                         <div class="nk-block-head">
                             <div class="nk-block-head-content">
                                 <h4 class="nk-block-title">List of Properties</h4>
                                 <div class="nk-block-des">
-                                    <p>Explore our properties
-                                    </p>
+                                    <p>Explore our properties</p>
                                 </div>
                             </div>
                         </div>
                         <div class="card card-bordered card-preview">
                             <div class="card-inner">
-                                <table class="datatable-init-export nowrap table" data-export-title="Export">
+                                <table class=" table">
                                     <thead>
                                         <tr>
                                             <th>Title</th>
@@ -28,21 +26,21 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let property of properties">
+                                        <tr *ngFor="let property of properties;">
                                             <td>{{ property.title }}</td>
                                             <td>{{ property.location }}</td>
                                             <td>{{ property.type }}</td>
                                             <td>{{ property.area }}</td>
-                                            <td>2011/04/25</td>
+                                            <td>{{ property.created_at | date:'yyyy/MM/dd' }}</td>
                                             <td>
-                                                <a [attr.href]="'/admin/property-edit/' + property.id"><em class="icon ni ni-edit"></em>
-                                                    <span>Edit</span>
+                                                <a class="btn btn-primary btn-sm" [routerLink]="['/admin/property-edit', property.id]">
+                                                    <em class="icon ni ni-edit"></em> <span>Edit</span>
                                                 </a>
-                                                <a class="btn btn-success btn-sm" [attr.href]="'/admin/property-detail/' + property.id"><em class="icon ni ni-eye"></em>
-                                                    <span>View</span>
+                                                <a class="btn btn-success btn-sm" [routerLink]="['/admin/property-detail', property.id]">
+                                                    <em class="icon ni ni-eye"></em> <span>View</span>
                                                 </a>
-                                                <button class="btn btn-danger btn-sm" (click)="deleteProperty(property.id)"><em class="icon ni ni-trash"></em>
-                                                    <span>Delete</span>
+                                                <button class="btn btn-danger btn-sm" (click)="deleteProperty(property.id)">
+                                                    <em class="icon ni ni-trash"></em> <span>Delete</span>
                                                 </button>
                                             </td>
                                         </tr>

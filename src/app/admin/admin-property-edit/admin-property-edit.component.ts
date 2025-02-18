@@ -4,6 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { PropertyService } from '../../services/backend/property.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-admin-property-edit',
@@ -16,13 +18,12 @@ export class AdminPropertyEditComponent implements OnInit {
   propertyForm: FormGroup;
   propertyId: string | null = null;  // To store property ID when editing
 
-  private propertyApiUrl = 'http://localhost:3000/properties';
-
   constructor(
     private fb: FormBuilder,
     private http: HttpClient,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private propertyService: PropertyService
   ) {
     this.propertyForm = this.fb.group({
       type: ['', Validators.required],
@@ -44,14 +45,17 @@ export class AdminPropertyEditComponent implements OnInit {
     console.log('Property ID', this.propertyId);
 
     if (this.propertyId) {
-      this.loadPropertyData(this.propertyId);
+      this.loadPropertyData(Number(this.propertyId));
     }
   }
 
-  loadPropertyData(id: string): void {
-    this.http.get<any>(`${this.propertyApiUrl}/${id}`).subscribe(
+  loadPropertyData(id: number): void {
+    this.propertyService.getById(id).subscribe(
       (data) => {
-        this.property = data;
+        this.property = {
+          ...data,
+          images: typeof data.images === 'string' ? JSON.parse(data.images) : data.images
+        };
         console.log('Fetched Property:', data);
 
         // Patch the form with fetched data
@@ -99,19 +103,34 @@ export class AdminPropertyEditComponent implements OnInit {
 
   onSubmit(): void {
     if (this.propertyForm.valid) {
-      this.http.put(`${this.propertyApiUrl}/${this.propertyId}`, this.propertyForm.value).subscribe(
-        (response) => {
-          console.log('Property Data:', this.propertyForm.value, response);
-          alert('Property updated successfully!');
-          this.router.navigate(['/admin/dashboard']);
-        },
-        (error) => {
-          console.error('Error while updating property', error);
-          alert('There was an error while updating');
-        }
-      );
+      if (this.propertyId) {  // Ensure the propertyId exists
+        this.propertyService.update(Number(this.propertyId), this.propertyForm.value).subscribe(
+          (response) => {
+            console.log('Property Data:', this.propertyForm.value, response);
+            Swal.fire({
+              icon: 'success',
+              title: 'Success',
+              text: 'Property updated successfully!',
+            });
+            this.router.navigate(['/admin/dashboard']);
+          },
+          (error) => {
+            console.error('Error while updating property', error);
+            const errorMessage = error?.message || 'There was an error while updating';
+            Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              text: errorMessage,
+            });
+          }
+        );
+      }
     } else {
-      alert('Please fill all required fields');
+      Swal.fire({
+        icon: 'warning',
+        title: 'Warning',
+        text: 'Please fill all required fields',
+      });
     }
   }
 }

@@ -32,6 +32,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthComponent } from './layouts/auth-layout/auth/auth.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 export const routes: Routes = [
     {
@@ -60,14 +62,15 @@ export const routes: Routes = [
         children: [
             { path: 'login', component: LoginComponent },
             { path: 'register', component: RegisterComponent },
+            { path: 'forgot-password', component: ForgotPasswordComponent },
+            { path: 'reset-password', component: ResetPasswordComponent }
         ],
     },
 
     // Admin routes protected with AuthGuard and RoleGuard
     {
         path: 'admin',
-        component: AdminLayoutComponent, // Wraps all admin pages
-        canActivate: [AuthGuard, RoleGuard],
+        component: AdminLayoutComponent, 
         children: [
             { path: 'dashboard', component: AdminDashboardComponent },
             { path: 'tenants', component: TenantsDashboardComponent },

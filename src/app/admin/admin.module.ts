@@ -15,6 +15,8 @@ import { MaintenanceDashboardComponent } from './maintenance-dashboard/maintenan
 import { MaintenanceFormComponent } from './maintenance/maintenance-form/maintenance-form.component';
 import { MaintenanceListComponent } from './maintenance/maintenance-list/maintenance-list.component';
 import { FinancialsDashboardComponent } from './financials-dashboard/financials-dashboard.component';
+import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -32,7 +34,9 @@ import { FinancialsDashboardComponent } from './financials-dashboard/financials-
     MaintenanceDashboardComponent,
     MaintenanceFormComponent,
     MaintenanceListComponent,
-    FinancialsDashboardComponent
+    FinancialsDashboardComponent,
+    HttpClientModule,
+    RouterModule 
   ]
 })
 export class AdminModule { }

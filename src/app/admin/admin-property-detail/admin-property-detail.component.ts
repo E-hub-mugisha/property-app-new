@@ -3,6 +3,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
+import { PropertyService } from '../../services/backend/property.service';
 
 @Component({
   selector: 'app-admin-property-detail',
@@ -13,26 +14,29 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class AdminPropertyDetailComponent implements OnInit {
 
   property: any | null = null; // Holds property data
-  private apiUrl = 'http://localhost:3000/properties'; // Base API URL
+  
   googleMapsUrl: SafeResourceUrl | null = null;
 
-  constructor(private route: ActivatedRoute, private http: HttpClient, private router: Router, private sanitizer: DomSanitizer) { }
+  constructor(private route: ActivatedRoute, private http: HttpClient, private router: Router, private sanitizer: DomSanitizer, private propertyService: PropertyService) { }
 
   ngOnInit(): void {
     // Get the property ID from the route
-    const propertyId = this.route.snapshot.paramMap.get('id');
-    console.log('Property ID:', propertyId);
+    const id = this.route.snapshot.paramMap.get('id');
+    console.log('Property ID:', id);
 
-    if (propertyId) {
-      this.fetchPropertyById(propertyId); // Fetch property data
+    if (id) {
+      this.fetchPropertyById(Number(id)); // Fetch property data
     }
   }
 
   // Fetch property details by ID
-  fetchPropertyById(id: string): void {
-    this.http.get<any>(`${this.apiUrl}/${id}`).subscribe(
+  fetchPropertyById(id: number): void {
+    this.propertyService.getById(id).subscribe(
       (data) => {
-        this.property = data;
+        this.property = {
+          ...data,
+          images: typeof data.images === 'string' ? JSON.parse(data.images) : data.images
+        };
         console.log('Fetched Property:', data);
         this.sanitizeGoogleMapsUrl(data.location);
       },

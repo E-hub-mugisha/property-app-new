@@ -41,14 +41,6 @@ const routes: Routes = [
     ],
   },
 
-  {
-    path: 'auth',
-    component: AuthComponent,  // This will wrap your login and register pages
-    children: [
-      { path: 'login', component: LoginComponent },
-      { path: 'register', component: RegisterComponent }
-    ]
-  },
 
   // Admin routes handled by AdminRoutingModule
   {
